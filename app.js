@@ -1,4 +1,6 @@
 const express = require('express')
+const cors = require('cors')
+
 const app = express()
 const dotenv = require('dotenv')
 dotenv.config()
@@ -13,6 +15,7 @@ const employee = require('./routes/employee')
 
 const errorHandler = require('./errorHandler/errorHandler')
 
+app.use(cors())
 app.use(express.json())
 app.use(express.urlencoded({extended: true}))
 

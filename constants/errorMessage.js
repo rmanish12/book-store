@@ -11,7 +11,7 @@ const ErrorMessage = {
     EMP_DOB_REQUIRED: 'Date of birth of the employee is required',
 
     USER_ALREADY_PRESENT: 'Email is already registered with us',
-    USER_NOT_FOUND: 'Email provided is not registered with us',
+    USER_NOT_FOUND: 'Employee is not registered with us',
     PASSWORD_MISMATCH: 'Incorrect password'
 }
 

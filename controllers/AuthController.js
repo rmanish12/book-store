@@ -1,3 +1,5 @@
+const _ = require('lodash')
+
 const Employee = require('../models/Employee')
 
 const ResponseStatus = require('../response/status')
@@ -17,8 +19,8 @@ class AuthController {
         console.log(LoggingMessage.EMP_LOGIN_REQUEST, email)
 
         try {
-            const employee = await Employee.findOne({email})
-                .select(['id', 'name', 'email' , 'password'])
+            let employee = await Employee.findOne({email})
+                .select(['id', 'name' , 'password', 'role'])
                 .populate({
                     path: 'store',
                     select: ['_id', 'name']
@@ -35,7 +37,8 @@ class AuthController {
             }
 
             console.log(LoggingMessage.EMP_LOGIN_SUCCESS + email)
-            res.status(ResponseStatus.OK).send(employee)
+
+            res.status(ResponseStatus.OK).send(_.pick(employee, ['id', 'name', 'role', 'store']))
 
         } catch (err) {
             console.error(LoggingMessage.EMP_LOGIN_FAILURE + err.message + err)

@@ -7,6 +7,9 @@ const ResponseMessage = {
 
     EMP_LOGIN_FAILURE: 'Error while logging. ',
 
+    EMP_PASS_UPDATE_SUCCESS: 'Password has been updated successfully',
+    EMP_PASS_UPDATE_FAILURE: 'Error while updating password. ',
+
     INTERNAL_SERVER_ERROR: 'Some internal error occurred. Please try again'
 }
 

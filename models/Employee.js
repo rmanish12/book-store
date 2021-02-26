@@ -2,7 +2,7 @@ const connection = require('../db/connection')
 const moment = require('moment')
 const Schema = require('mongoose').Schema
 
-const currentDate = moment(new Date()).format('DD-MM-YYYY')
+const currentDate = moment(new Date()).format('MM-DD-YYYY')
 
 const EmployeeSchema = new Schema({
     name: {

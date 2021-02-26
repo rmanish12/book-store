@@ -6,7 +6,6 @@ const generateHashedPassword = async (password) => {
 }
 
 const matchPassword = async (userPassword, dbPassword) => {
-    console.log('sds: ',userPassword, dbPassword)
     const match = await bcrypt.compare(userPassword, dbPassword)
     return match;
 }
