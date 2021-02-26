@@ -10,6 +10,7 @@ const NotFoundException = require('../errors/notFound')
 const InvalidPasswordException = require('../errors/invalidPassword')
 const ErrorMessage = require('../constants/errorMessage')
 const { matchPassword } = require('../services/password/password')
+const issueJwt = require('../services/auth/issueJwtToken')
 
 class AuthController {
 
@@ -37,8 +38,16 @@ class AuthController {
             }
 
             console.log(LoggingMessage.EMP_LOGIN_SUCCESS + email)
-
-            res.status(ResponseStatus.OK).send(_.pick(employee, ['id', 'name', 'role', 'store']))
+            
+            const { _id, role } = employee
+            const token = issueJwt({_id, role })
+            
+            const response = {
+                employee: _.pick(employee, ['id', 'name', 'role', 'store']),
+                token
+            }
+            
+            res.status(ResponseStatus.OK).send(response)
 
         } catch (err) {
             console.error(LoggingMessage.EMP_LOGIN_FAILURE + err.message + err)

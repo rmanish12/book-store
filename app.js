@@ -1,6 +1,6 @@
 const express = require('express')
 const cors = require('cors')
-
+const passport = require('./passport/jwtAuth')
 const app = express()
 const dotenv = require('dotenv')
 dotenv.config()
@@ -18,8 +18,12 @@ const errorHandler = require('./errorHandler/errorHandler')
 app.use(cors())
 app.use(express.json())
 app.use(express.urlencoded({extended: true}))
+app.use(passport.initialize())
 
 app.use('/', auth)
+
+app.use(passport.authenticate('jwt', { session: false}))
+
 app.use('/store', store)
 app.use('/employee', employee)
 
