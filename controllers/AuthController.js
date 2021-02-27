@@ -57,6 +57,25 @@ class AuthController {
 
     }
 
+    static verifyUser(req, res, next) {
+
+        const { email, _id, name, role, store } = req.user
+
+        console.log(LoggingMessage.EMP_LOGIN_REQUEST, email)
+
+        const response = {
+            employee: {
+                id: _id,
+                name,
+                role,
+                store: store ? { id: store._id, name: store.name } : null
+            }
+        }
+
+        res.status(ResponseStatus.OK).send(response)
+
+    }
+
 }
 
 module.exports = AuthController
